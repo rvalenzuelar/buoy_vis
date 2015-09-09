@@ -1,1 +1,1 @@
-Module for plotting NOAA buoy data
+Module for plotting buoy observations from the <a href="http://www.ndbc.noaa.gov/hmd.shtml" target="_blank">NOAA Data Buoy Center</a>
