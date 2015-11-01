@@ -9,13 +9,26 @@ import seaborn as sns
 sns.set_color_codes()
 
 ''' from north to south '''
-buoyfiles = ['/home/rvalenzuela/BUOY/case03/46014c2001.txt',
-			'/home/rvalenzuela/BUOY/case03/46013c2001.txt',
-			'/home/rvalenzuela/BUOY/case03/46026c2001.txt',
-			'/home/rvalenzuela/BUOY/case03/46012c2001.txt']
 
-st = datetime.datetime(2001, 1, 23, 0, 0)
-en = datetime.datetime(2001, 1, 25, 0, 0)
+# base_folder='/home/rvalenzuela/BUOY/'
+base_folder='/Users/raulv/Documents/BUOY/'
+usr_case=raw_input('Indicate case (i.e. 3):')
+scase='case'+usr_case.zfill(2)
+
+buoyfiles = [base_folder + scase + '/46014c2001.txt',
+			 base_folder + scase + '/46013c2001.txt',
+			 base_folder + scase + '/46026c2001.txt',
+			 base_folder + scase + '/46012c2001.txt']
+
+if usr_case=='3':
+	st = datetime.datetime(2001, 1, 23, 0, 0)
+	en = datetime.datetime(2001, 1, 25, 0, 0)
+elif usr_case=='7':
+	st = datetime.datetime(2001, 2, 17, 0, 0)
+	en = datetime.datetime(2001, 2, 18, 0, 0)
+
+
+
 fig,ax = plt.subplots(len(buoyfiles),1,figsize=(13,10),sharex=True)
 buoylats={'B14':'39.24', 'B13':'38.24', 'B26':'37.75', 'B12':'37.36',}
 
@@ -36,7 +49,7 @@ def make_quiver(ax):
 
 		xticks=range(0,len(time),18)
 		xticklabels=df2.index[xticks]
-		date_fmt='%H\n%d'
+		date_fmt='%d\n%H'
 		xtlabels=[t.strftime(date_fmt) for t in xticklabels]
 
 		Q=ax[i].quiver(X,Y,U,V,width=0.002,color='b')
@@ -49,7 +62,7 @@ def make_quiver(ax):
 		ax[i].set_xticks(xticks)
 		ax[i].set_xticklabels(xtlabels)
 		ax[i].invert_xaxis()
-		ax[i].set_xlim([len(time),-10])
+		ax[i].set_xlim([len(time)+5,-5])
 		ax[i].set_ylim([-0.02,0.02])
 		ax[i].tick_params(
 			axis='y',          # changes apply to the x-axis
@@ -60,11 +73,11 @@ def make_quiver(ax):
 		filename=os.path.basename(f)
 		buoyname='B'+filename[3:5]
 		degree_sign= u'\N{DEGREE SIGN}'
-		atext=buoyname+'\n'+buoylats[buoyname]+degree_sign+'N'
-		ax[i].text(0.05, 0.95, atext, transform=ax[i].transAxes, fontsize=14,
-					verticalalignment='top')		
+		atext=buoyname+' - '+buoylats[buoyname]+degree_sign+'N'
+		ax[i].text(0.05, 0.1, atext, transform=ax[i].transAxes, fontsize=14,
+					verticalalignment='bottom')		
 		plt.draw()
 
 make_quiver(ax)
-plt.suptitle('Wind vectors from NOAA buoys')
+plt.suptitle('Wind vectors from NOAA buoys\nDate: '+st.strftime('%Y-%m'))
 plt.show()
