@@ -10,8 +10,8 @@ sns.set_color_codes()
 
 ''' from north to south '''
 
-# base_folder='/home/rvalenzuela/BUOY/'
-base_folder='/Users/raulv/Documents/BUOY/'
+base_folder='/home/rvalenzuela/BUOY/'
+# base_folder='/Users/raulv/Documents/BUOY/'
 usr_case=raw_input('Indicate case (i.e. 3):')
 scase='case'+usr_case.zfill(2)
 
