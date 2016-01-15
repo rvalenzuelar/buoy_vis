@@ -12,7 +12,7 @@ sns.set_color_codes()
 
 base_folder='/home/rvalenzuela/BUOY/'
 # base_folder='/Users/raulv/Documents/BUOY/'
-usr_case=raw_input('Indicate case (i.e. 3):')
+usr_case=raw_input('Indicate case (i.e. 3): ')
 scase='case'+usr_case.zfill(2)
 
 buoyfiles = [base_folder + scase + '/46014c2001.txt',
@@ -23,6 +23,15 @@ buoyfiles = [base_folder + scase + '/46014c2001.txt',
 if usr_case=='3':
 	st = datetime.datetime(2001, 1, 23, 0, 0)
 	en = datetime.datetime(2001, 1, 25, 0, 0)
+elif usr_case=='4':
+	st = datetime.datetime(2001, 1, 25, 0, 0)
+	en = datetime.datetime(2001, 1, 27, 0, 0)
+elif usr_case=='5':
+	st = datetime.datetime(2001, 2, 9, 0, 0)
+	en = datetime.datetime(2001, 2, 11, 0, 0)		
+elif usr_case=='6':
+	st = datetime.datetime(2001, 2, 11, 0, 0)
+	en = datetime.datetime(2001, 2, 12, 0, 0)	
 elif usr_case=='7':
 	st = datetime.datetime(2001, 2, 17, 0, 0)
 	en = datetime.datetime(2001, 2, 18, 0, 0)
